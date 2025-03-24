@@ -199,7 +199,7 @@ async def sms_received(message: types.Message, state: FSMContext, bot: Bot):
         return
     await state.update_data(sms=message.text)
     data = await state.get_data()
-    user = TelegramProfile.objects.filter(chat_id=message.from_user.id).first()
+    user = RegisteredUsers.objects.filter(chat_id=message.from_user.id).first()
     admin_users = RegisteredUsers.objects.filter(role=Role.ADMIN)
 
     # Adminlarga xabar yuborish

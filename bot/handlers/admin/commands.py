@@ -136,7 +136,7 @@ async def users(message: MessageStates, bot: Bot):
 async def info_continue(message: MessageStates, bot: Bot, state: FSMContext):
     await state.update_data(id_of_user=message.text)
     data = await state.get_data()
-    user = TelegramProfile.objects.filter(id=data.get('id_of_user')).first()
+    user = RegisteredUsers.objects.filter(id=data.get('id_of_user')).first()
     if user:
         local_time = localtime(user.created_at)
         if user.first_name and user.chat_id:
